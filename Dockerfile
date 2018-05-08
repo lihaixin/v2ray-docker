@@ -8,6 +8,8 @@ ADD https://storage.googleapis.com/v2ray-docker/geoip.dat /usr/bin/v2ray/
 ADD https://storage.googleapis.com/v2ray-docker/geosite.dat /usr/bin/v2ray/
 
 # COPY config.json /etc/v2ray/config.json
+
+ENV PATH /usr/bin/v2ray:$PATH
 ENV SERVERIP 8.8.8.8
 ENV PORT 59028
 ENV LPORT 1080
@@ -21,7 +23,7 @@ RUN set -ex && \
     chmod +x /usr/bin/v2ray/v2ctl && \
     chmod +x /usr/bin/v2ray/v2ray
 
-ENV PATH /usr/bin/v2ray:$PATH
+
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
