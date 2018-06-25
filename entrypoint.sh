@@ -7,7 +7,7 @@ if [ ! -f "$EXECFILE" ]; then
 fi
 sleep 2
 
-cat >> /etc/config.json<< TEMPEOF
+cat > /etc/config.json<< TEMPEOF
 {
   "log": {
     "access": "",
@@ -32,12 +32,12 @@ cat >> /etc/config.json<< TEMPEOF
     "settings": {
       "vnext": [
         {
-          "address": $SERVERIP,
+          "address": "$SERVERIP",
           "port": $PORT,
           "users": [
             {
-              "id": $ID,
-              "alterId": 233,
+              "id": "$ID",
+              "alterId": 0,
               "security": "aes-128-gcm"
             }
           ]
@@ -106,8 +106,8 @@ cat >> /etc/config.json<< TEMPEOF
             "198.51.100.0/24",
             "203.0.113.0/24",
             "::1/128",
-            "fc00::/7",
-            "fe80::/10"
+           "fc00::/7",
+           "fe80::/10"
           ],
           "domain": null
         }
@@ -115,7 +115,6 @@ cat >> /etc/config.json<< TEMPEOF
     }
   }
 }
-
 TEMPEOF
 
 sleep 2
