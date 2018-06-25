@@ -1,31 +1,25 @@
-FROM alpine:latest
+# USE for client down
+FROM nginx:stable-alpine
+WORKDIR /usr/share/nginx/html/
 
-LABEL maintainer "Darian Raymond <admin@v2ray.com>"
-
-ADD https://storage.googleapis.com/v2ray-docker/v2ray /usr/bin/v2ray/
-ADD https://storage.googleapis.com/v2ray-docker/v2ctl /usr/bin/v2ray/
-ADD https://storage.googleapis.com/v2ray-docker/geoip.dat /usr/bin/v2ray/
-ADD https://storage.googleapis.com/v2ray-docker/geosite.dat /usr/bin/v2ray/
-
-# COPY config.json /etc/v2ray/config.json
-
-ENV PATH /usr/bin/v2ray:$PATH
-ENV SERVERIP 8.8.8.8
-ENV PORT 59028
-ENV LPORT 1080
-ENV ID 88888888-4444-4444-4444-121212121212 
-
-ENV EXECFILE	/usr/sbin/httpv
-
-RUN set -ex && \
-    apk --no-cache add ca-certificates && \
-    mkdir /var/log/v2ray/ &&\
-    chmod +x /usr/bin/v2ray/v2ctl && \
-    chmod +x /usr/bin/v2ray/v2ray
+#RUN brook_new_ver=`wget -qO- https://github.com/txthinking/brook/tags| grep "/txthinking/brook/releases/tag/"| head -n 1| awk -F "/tag/" '{print $2}'| sed 's/\">//'` && \
+ENV VERSION	v20180401
+ENV HTTPDIR     /usr/share/nginx/html/
 
 
 
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+#Down client file
+# RUN wget --no-check-certificate -O ${HTTPDIR}/brook.exe "https://github.com/txthinking/brook/releases/download/${VERSION}/brook.exe"
+#           wget --no-check-certificate -O ${HTTPDIR}/Brook.white.exe "https://github.com/txthinking/brook/releases/download/${VERSION}/Brook.white.exe" && \
+#           wget --no-check-certificate -O ${HTTPDIR}/Brook.386.exe "https://github.com/txthinking/brook/releases/download/${VERSION}/Brook.386.exe" && \
+#           wget --no-check-certificate -O ${HTTPDIR}/Brook.386.white.exe "https://github.com/txthinking/brook/releases/download/${VERSION}/Brook.386.white.exe" && \
+#           wget --no-check-certificate -O ${HTTPDIR}/Brook.apk "https://github.com/txthinking/brook/releases/download/${VERSION}/Brook.apk"
 
-ENTRYPOINT ["/entrypoint.sh"]
+ADD https://github.com/txthinking/brook/releases/download/${VERSION}/Brook.Setup.exe ${HTTPDIR}
+ADD https://github.com/txthinking/brook/releases/download/${VERSION}/Brook.apk ${HTTPDIR}
+ADD https://github.com/txthinking/brook/releases/download/${VERSION}/Brook.dmg ${HTTPDIR}
+ADD https://docs.google.com/document/export?format=pdf&id=1KrYAvh-RHhaKTHELOFEJO5c7H0dHkzU3AeALRxvC7zE ${HTTPDIR}
+ADD ./index.html /usr/share/nginx/html/
+RUN mv export brook使用指南.pdf && chmod 644 ./*
+
+CMD ["nginx", "-g", "daemon off;"]
