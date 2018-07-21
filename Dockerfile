@@ -1,7 +1,7 @@
 # USE for client down
 FROM nginx:stable-alpine
 WORKDIR /usr/share/nginx/html/
-
+ENV CTIME     20180721
 ENV HTTPDIR     /usr/share/nginx/html/
 
 #Down client file
