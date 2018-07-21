@@ -2,14 +2,10 @@
 FROM nginx:stable-alpine
 WORKDIR /usr/share/nginx/html/
 
-#RUN brook_new_ver=`wget -qO- https://github.com/txthinking/brook/tags| grep "/txthinking/brook/releases/tag/"| head -n 1| awk -F "/tag/" '{print $2}'| sed 's/\">//'` && \
-ENV VERSION	v20180401
 ENV HTTPDIR     /usr/share/nginx/html/
 
-
-
 #Down client file
-##windows
+#windows
 ADD https://github.com/v2ray/v2ray-core/releases/download/v3.31/v2ray-windows-32.zip ${HTTPDIR}
 ADD https://github.com/v2ray/v2ray-core/releases/download/v3.31/v2ray-windows-64.zip ${HTTPDIR}
 ADD https://github.com/2dust/v2rayN/releases/download/2.11/v2rayN.exe ${HTTPDIR}
