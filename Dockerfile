@@ -11,6 +11,8 @@ ADD https://github.com/v2ray/v2ray-core/releases/download/v3.31/v2ray-windows-64
 ADD https://github.com/2dust/v2rayN/releases/download/2.11/v2rayN.exe ${HTTPDIR}
 #Mac ios
 ADD https://github.com/Cenmrev/V2RayX/releases/download/v1.2.1/V2RayX.app.zip ${HTTPDIR}
+#iPhone 
+ADD https://github.com/j-proxy/iossos/raw/ba20dd240e251d9bd589008e0b00ec514ed88d12/Shadowrocket-2.1.10-PP.ipa ${HTTPDIR}
 #android
 ADD https://github.com/2dust/v2rayNG/releases/download/0.5.1/app-arm64-v8a-release.apk ${HTTPDIR}
 ADD https://github.com/2dust/v2rayNG/releases/download/0.5.1/app-armeabi-v7a-release.apk ${HTTPDIR}
