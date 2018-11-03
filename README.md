@@ -1,2 +1,2 @@
 # v2ray
-v2ray in docker
+v2ray url in docker
