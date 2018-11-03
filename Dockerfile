@@ -1,4 +1,4 @@
-# USE for client down
+# USE for v2ray url
 FROM nginx:stable-alpine
 WORKDIR /usr/share/nginx/html/
 ENV CTIME     20181103
