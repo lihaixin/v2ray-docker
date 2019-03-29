@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 LABEL maintainer "lEE <admin@v2ray.com>"
-LABEL VERSION v3.18.1
+LABEL VERSION v4.18
 LABEL CTIME 2018-4-22
 
 ENV PORT 59028
