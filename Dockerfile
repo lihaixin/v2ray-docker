@@ -21,7 +21,8 @@ COPY --from=builder /usr/bin/v2ray/geosite.dat /usr/bin/v2ray/
 ENV PATH /usr/bin/v2ray:$PATH
 ENV SERVERIP 8.8.8.8
 ENV PORT 59028
-ENV LPORT 1080
+ENV LSPORT 1080
+ENV LHPORT 8080
 ENV ID 88888888-4444-4444-4444-121212121212 
 
 ENV EXECFILE	/usr/sbin/httpv
