@@ -1,3 +1,11 @@
+FROM ubuntu:latest as builder
+
+RUN apt-get update
+RUN apt-get install curl -y
+RUN curl -L -o /tmp/go.sh https://install.direct/go.sh
+RUN chmod +x /tmp/go.sh
+RUN /tmp/go.sh
+
 FROM alpine:latest
 
 LABEL maintainer "lEE <admin@v2ray.com>"
@@ -11,12 +19,12 @@ ENV RATE 500mbit
 ENV EXECFILE	/usr/sbin/httpv
 
 RUN apk add -U iproute2 tzdata && ln -s /usr/lib/tc /lib/tc \
-         && cp -r -f /usr/share/zoneinfo/Hongkong /etc/localtime
+         && cp -r -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
-ADD https://storage.googleapis.com/v2ray-docker/v2ray /usr/bin/v2ray/
-ADD https://storage.googleapis.com/v2ray-docker/v2ctl /usr/bin/v2ray/
-ADD https://storage.googleapis.com/v2ray-docker/geoip.dat /usr/bin/v2ray/
-ADD https://storage.googleapis.com/v2ray-docker/geosite.dat /usr/bin/v2ray/
+COPY --from=builder /usr/bin/v2ray/v2ray /usr/bin/v2ray/
+COPY --from=builder /usr/bin/v2ray/v2ctl /usr/bin/v2ray/
+COPY --from=builder /usr/bin/v2ray/geoip.dat /usr/bin/v2ray/
+COPY --from=builder /usr/bin/v2ray/geosite.dat /usr/bin/v2ray/
 
 # COPY config.json /etc/v2ray/config.json
 
