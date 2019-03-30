@@ -18,7 +18,7 @@ ENV LIMIT_CONN 100
 ENV RATE 500mbit
 ENV EXECFILE	/usr/sbin/httpv
 
-RUN apk add -U iproute2 tzdata && ln -s /usr/lib/tc /lib/tc \
+RUN apk add -U iproute2 tzdata curl && ln -s /usr/lib/tc /lib/tc \
          && cp -r -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 COPY --from=builder /usr/bin/v2ray/v2ray /usr/bin/v2ray/
