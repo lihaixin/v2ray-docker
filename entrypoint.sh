@@ -7,7 +7,7 @@ if [ ! -f "$EXECFILE" ]; then
 fi
 sleep 2
 
-cat >> /etc/config.json<< TEMPEOF
+cat > /etc/config.json<< TEMPEOF
 {
     "log": {
         "access": "/dev/stdout",
