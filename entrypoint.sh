@@ -63,6 +63,7 @@ get_ip() {
 get_ip
 
 echo
+echo "---------- V2Ray 配置信息 -------------"
 echo "地址 (Address) = ${ip}"
 echo
 echo "端口 (Port) = $PORT"
@@ -74,6 +75,7 @@ echo
 echo "传输协议 (Network) = tcp"
 echo
 echo "伪装类型 (header type) = none"
+echo "---------- END -------------"
 echo
 
 cat >/tmp/vmess_qr.json <<-EOF
@@ -92,12 +94,36 @@ cat >/tmp/vmess_qr.json <<-EOF
 }
 EOF
 
-vmess="vmess://$(cat /tmp/vmess_qr.json | base64)"
-echo
-echo "---------- V2Ray vmess URL / V2RayNG v0.4.1+ / V2RayN v2.1+ / 仅适合部分客户端 -------------"
-echo
-echo -e $vmess
-echo
+url_create() {
+	vmess="vmess://$(cat /tmp/vmess_qr.json | base64)"
+	echo
+	echo "---------- V2Ray vmess URL / V2RayNG v0.4.1+ / V2RayN v2.1+ / 仅适合部分客户端 -------------"
+	echo
+	echo -e $vmess
+	echo
+}
+
+url_create
+
+qr_create() {
+	vmess="vmess://$(cat /tmp/vmess_qr.json | base64)"
+	link="https://233boy.github.io/tools/qr.html#${vmess}"
+	echo
+	echo "---------- V2Ray 二维码链接 适用于 V2RayNG v0.4.1+ / Kitsunebi -------------"
+	echo
+	echo -e $link
+	echo
+	echo
+	echo -e "友情提醒: 请务必核对扫码结果 (V2RayNG 除外)"
+	echo
+	echo
+	echo " V2Ray 客户端使用教程: http://bit.ly/2HN3STj"
+	echo
+	echo
+}
+
+qr_create
+
 rm -rf /tmp/vmess_qr.json
 
 sleep 2
