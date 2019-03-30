@@ -107,7 +107,7 @@ url_create
 
 qr_create() {
 	vmess="vmess://$(cat /tmp/vmess_qr.json | base64)"
-	link="https://233boy.github.io/tools/qr.html#${vmess}"
+	link="https://233boy.github.io/tools/qr.html#vmess://$(cat /tmp/vmess_qr.json | base64)"
 	echo
 	echo "---------- V2Ray 二维码链接 适用于 V2RayNG v0.4.1+ / Kitsunebi -------------"
 	echo
