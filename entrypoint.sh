@@ -92,7 +92,7 @@ cat >/tmp/vmess_qr.json <<-EOF
 }
 EOF
 
-local vmess="vmess://$(cat /tmp/vmess_qr.json | base64 -w 0)"
+vmess="vmess://$(cat /tmp/vmess_qr.json)"
 echo
 echo "---------- V2Ray vmess URL / V2RayNG v0.4.1+ / V2RayN v2.1+ / 仅适合部分客户端 -------------"
 echo
