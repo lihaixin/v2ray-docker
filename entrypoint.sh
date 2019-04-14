@@ -5,7 +5,29 @@ export PATH
 if [ ! -f "$EXECFILE" ]; then
 	ln -s  /usr/bin/v2ray/v2ray $EXECFILE
 fi
+
 sleep 2
+
+get_ip() {
+	ip=$DOMAIN
+	[[ -z $ip ]] && ip=$(curl -s https://ipinfo.io/ip)
+	[[ -z $ip ]] && ip=$(curl -s https://api.ip.sb/ip)
+	[[ -z $ip ]] && ip=$(curl -s https://api.ipify.org)
+	[[ -z $ip ]] && ip=$(curl -s https://ip.seeip.org)
+	[[ -z $ip ]] && ip=$(curl -s https://ifconfig.co/ip)
+	[[ -z $ip ]] && ip=$(curl -s https://api.myip.com | grep -oE "([0-9]{1,3}\.){3}[0-9]{1,3}")
+	[[ -z $ip ]] && ip=$(curl -s icanhazip.com)
+	[[ -z $ip ]] && ip=$(curl -s myip.ipip.net | grep -oE "([0-9]{1,3}\.){3}[0-9]{1,3}")
+	[[ -z $ip ]] && echo -e "\n$red 这垃圾小鸡扔了吧！$none\n" && exit
+}
+
+get_ip
+
+get_id() {
+        [[ -z $ID ]] && ID=$(cat /proc/sys/kernel/random/uuid)
+}
+
+get_id
 
 cat > /etc/config.json<< TEMPEOF
 {
@@ -48,26 +70,7 @@ iptables -A INPUT -p tcp -m state --state NEW --dport $LIMIT_PORT -m connlimit -
 tc qdisc add dev eth0 root tbf rate $RATE burst $BURST latency $LATENCY
 # watch -n $INTERVAL tc -s qdisc ls dev eth0
 
-get_ip() {
-	ip=$DOMAIN
-	[[ -z $ip ]] && ip=$(curl -s https://ipinfo.io/ip)
-	[[ -z $ip ]] && ip=$(curl -s https://api.ip.sb/ip)
-	[[ -z $ip ]] && ip=$(curl -s https://api.ipify.org)
-	[[ -z $ip ]] && ip=$(curl -s https://ip.seeip.org)
-	[[ -z $ip ]] && ip=$(curl -s https://ifconfig.co/ip)
-	[[ -z $ip ]] && ip=$(curl -s https://api.myip.com | grep -oE "([0-9]{1,3}\.){3}[0-9]{1,3}")
-	[[ -z $ip ]] && ip=$(curl -s icanhazip.com)
-	[[ -z $ip ]] && ip=$(curl -s myip.ipip.net | grep -oE "([0-9]{1,3}\.){3}[0-9]{1,3}")
-	[[ -z $ip ]] && echo -e "\n$red 这垃圾小鸡扔了吧！$none\n" && exit
-}
 
-get_ip
-
-get_id() {
-        [[ -z $ID ]] && ID=$(cat /proc/sys/kernel/random/uuid)
-}
-
-get_id
 
 echo
 echo "---------- V2Ray 配置信息 -------------"
