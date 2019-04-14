@@ -9,6 +9,6 @@ for c in $ALLURL
 do
         echo $c | awk -F'vmess' -vOFS="vmess" '{$1="";$1=$1}1' >> url.txt
 done
-echo url.txt | base64 | xargs | sed 's/\s\+//g' | tee index.html
+cat url.txt | base64 | xargs | sed 's/\s\+//g' | tee index.html
 rm -rf  url.txt
 nginx -g "daemon off;"
