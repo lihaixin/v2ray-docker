@@ -4,7 +4,7 @@ export PATH
 cd /usr/share/nginx/html/
 echo "添加以V2RAYURL开头的变量增加节点"
 echo "例如V2RAYURL_US1"
-ALLURL=`env | grep A2RAYURL`
+ALLURL=`env | grep V2RAYURL`
 for c in $ALLURL
 do
         echo $c | awk -F'vmess' -vOFS="vmess" '{$1="";$1=$1}1' >> url.txt
