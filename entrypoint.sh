@@ -49,7 +49,8 @@ tc qdisc add dev eth0 root tbf rate $RATE burst $BURST latency $LATENCY
 # watch -n $INTERVAL tc -s qdisc ls dev eth0
 
 get_ip() {
-	ip=$(curl -s https://ipinfo.io/ip)
+	ip=$DOMAIN
+	[[ -z $ip ]] && ip=$(curl -s https://ipinfo.io/ip)
 	[[ -z $ip ]] && ip=$(curl -s https://api.ip.sb/ip)
 	[[ -z $ip ]] && ip=$(curl -s https://api.ipify.org)
 	[[ -z $ip ]] && ip=$(curl -s https://ip.seeip.org)
@@ -61,6 +62,12 @@ get_ip() {
 }
 
 get_ip
+
+get_id() {
+        [[ -z $ID ]] && ID=$(cat /proc/sys/kernel/random/uuid)
+}
+
+get_id
 
 echo
 echo "---------- V2Ray 配置信息 -------------"
@@ -81,7 +88,7 @@ echo
 cat >/tmp/vmess_qr.json <<-EOF
 {
 			"v": "2",
-			"ps": "sanjin_${ip}",
+			"ps": "sanjin_${REMARKS}",
 			"add": "${ip}",
 			"port": "${PORT}",
 			"id": "${ID}",
