@@ -2,6 +2,8 @@
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 cd /usr/share/nginx/html/
+echo "添加以V2RAYURL开头的变量增加节点"
+echo "例如V2RAYURL_US1"
 ALLURL=`env | grep A2RAYURL`
 for c in $ALLURL
 do
