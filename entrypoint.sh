@@ -25,6 +25,7 @@ get_ip
 
 get_id() {
         [[ -z $ID ]] && ID=$(cat /proc/sys/kernel/random/uuid)
+	[[ -z $REMARKS ]] && REMARKS=sanjin
 }
 
 get_id
@@ -92,7 +93,7 @@ echo
 cat >/tmp/vmess_qr.json <<-EOF
 {
 			"v": "2",
-			"ps": "sanjin_${REMARKS}",
+			"ps": "${REMARKS}",
 			"add": "${ip}",
 			"port": "${PORT}",
 			"id": "${ID}",
