@@ -87,7 +87,6 @@ echo "传输协议 (Network) = tcp"
 echo
 echo "伪装类型 (header type) = none"
 echo "---------- END -------------"
-echo "需要自定义域名，提交DOMAIN变量"
 echo
 
 cat >/tmp/vmess_qr.json <<-EOF
@@ -118,7 +117,7 @@ url_create() {
 url_create
 
 qr_create() {
-	vmess="vmess://$(cat /tmp/vmess_qr.json | base64)"
+	#vmess="vmess://$(cat /tmp/vmess_qr.json | base64)"
 	link="https://233boy.github.io/tools/qr.html#vmess://$(cat /tmp/vmess_qr.json | base64 | xargs | sed 's/\s\+//g')"
 	echo
 	echo "---------- V2Ray 二维码链接 适用于 V2RayNG v0.4.1+ / Kitsunebi -------------"
