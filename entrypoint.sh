@@ -23,12 +23,12 @@ get_ip() {
 
 get_ip
 
-get_id() {
+get_envs() {
         [[ -z $ID ]] && ID=$(cat /proc/sys/kernel/random/uuid)
 	[[ -z $REMARKS ]] && REMARKS=sanjin
 }
 
-get_id
+get_envs
 
 cat > /etc/config.json<< TEMPEOF
 {
