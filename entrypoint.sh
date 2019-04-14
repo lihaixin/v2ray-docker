@@ -83,6 +83,7 @@ echo "传输协议 (Network) = tcp"
 echo
 echo "伪装类型 (header type) = none"
 echo "---------- END -------------"
+echo "需要自定义域名，提交DOMAIN变量"
 echo
 
 cat >/tmp/vmess_qr.json <<-EOF
