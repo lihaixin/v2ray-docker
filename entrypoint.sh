@@ -30,6 +30,10 @@ get_envs() {
 
 get_envs
 
+FILE=/etc/config.json
+if [ -f "$FILE" ]; then
+    echo "$FILE exist"
+else 
 cat > /etc/config.json<< TEMPEOF
 {
     "log": {
@@ -58,6 +62,7 @@ cat > /etc/config.json<< TEMPEOF
 }
 
 TEMPEOF
+fi
 
 sleep 2
 
