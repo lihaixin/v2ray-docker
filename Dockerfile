@@ -6,7 +6,6 @@ ENV HTTPDIR     /usr/share/nginx/html/
 
 #Down client file
 #windows
-ADD https://github.com/v2ray/v2ray-core/releases/download/v3.31/v2ray-windows-32.zip ${HTTPDIR}
 ADD https://github.com/2dust/v2rayN/releases/download/2.38/v2rayN-Core.zip ${HTTPDIR}
 
 #Mac ios
