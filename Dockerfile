@@ -18,6 +18,7 @@ COPY --from=builder /usr/bin/v2ray/geosite.dat /usr/bin/v2ray/
 
 # COPY config.json /etc/v2ray/config.json
 
+ENV TZ=Asia/Shanghai
 ENV PATH /usr/bin/v2ray:$PATH
 ENV SERVERIP 8.8.8.8
 ENV PORT 59028
@@ -28,7 +29,7 @@ ENV ID 88888888-4444-4444-4444-121212121212
 ENV EXECFILE	/usr/sbin/httpv
 
 RUN set -ex && \
-    apk --no-cache add ca-certificates && \
+    apk --no-cache add ca-certificates tzdata && \
     mkdir /var/log/v2ray/ &&\
     chmod +x /usr/bin/v2ray/v2ctl && \
     chmod +x /usr/bin/v2ray/v2ray
