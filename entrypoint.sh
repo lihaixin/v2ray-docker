@@ -63,14 +63,14 @@ cat > /etc/config.json<< TEMPEOF
        "network": "mkcp",
        "kcpSettings": {
          "readBufferSize": $BufferSize,
-         "uplinkCapacity": $RATE,
+         "uplinkCapacity": $KCPSPEED,
          "header": {
            "type": "utp"
          },
          "mtu": $MTU,
          "writeBufferSize": $BufferSize,
          "congestion": true,
-         "downlinkCapacity": $RATE,
+         "downlinkCapacity": $KCPSEED,
          "tti": $TTI
        },
        "security": "none"
