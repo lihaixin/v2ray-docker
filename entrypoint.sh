@@ -33,31 +33,50 @@ get_envs
 
 cat > /etc/config.json<< TEMPEOF
 {
-    "log": {
+   "outbound": {
+     "protocol": "freedom"
+   },
+   "log": {
         "access": "/dev/stdout",
         "error": "/dev/stdout",
         "loglevel": "warning"
-    },
-    "inbound": {
-        "port": $PORT,
-        "protocol": "vmess",
-        "settings": {
-            "udp": true,
-            "clients": [
-                {
-                    "id": "$ID",
-                    "level": 1,
-                    "alterId": 233
-                }
-            ]
-        }
-    },
-    "outbound": {
-        "protocol": "freedom",
-        "settings": {}
-    }
-}
-
+   },
+   "outboundDetour": [
+     {
+       "protocol": "blackhole",
+       "tag": "blocked"
+     }
+   ],
+   "inbound": {
+     "settings": {
+       "clients": [
+         {
+           "id": "$ID",
+           "level": 1,
+           "alterId": 233
+         }
+       ]
+     },
+     "port": $PORT,
+     "protocol": "vmess",
+     "streamSettings": {
+       "network": "mkcp",
+       "kcpSettings": {
+         "readBufferSize": 3,
+         "uplinkCapacity": $RATE,
+         "header": {
+           "type": "utp"
+         },
+         "mtu": $MTU,
+         "writeBufferSize": 3,
+         "congestion": true,
+         "downlinkCapacity": $RATE,
+         "tti": $TTI
+       },
+       "security": "none"
+     }
+   }
+ }
 TEMPEOF
 
 
@@ -85,9 +104,15 @@ echo "用户ID (User ID / UUID) = ${ID}"
 echo
 echo "额外ID (Alter Id) = 233"
 echo
-echo "传输协议 (Network) = tcp"
+echo "传输协议 (Network) = kcp"
 echo
-echo "伪装类型 (header type) = none"
+echo "伪装类型 (header type) = utp"
+echo
+echo "传输速度 (speed) = $RATE"
+echo
+echo "最大传输单元 (mtu) = $MTI
+echo
+echo "传输时间间隔(tti) = $TTI
 echo "---------- END -------------"
 echo
 
@@ -99,8 +124,8 @@ cat >/tmp/vmess_qr.json <<-EOF
 			"port": "${PORT}",
 			"id": "${ID}",
 			"aid": "233",
-			"net": "tcp",
-			"type": "none",
+			"net": "kcp",
+			"type": "utp",
 			"host": "",
 			"path": "",
 			"tls": ""
