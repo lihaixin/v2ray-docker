@@ -69,8 +69,8 @@ cat > /etc/config.json<< TEMPEOF
          },
          "mtu": $MTU,
          "writeBufferSize": $BufferSize,
-         "congestion": true,
-         "downlinkCapacity": $KCPSEED,
+         "congestion": "true",
+         "downlinkCapacity": $KCPSPEED,
          "tti": $TTI
        },
        "security": "none"
