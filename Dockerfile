@@ -15,14 +15,14 @@ LABEL CTIME 2019-9-21
 ENV PORT=59028
 ENV ID="36cc0413-0620-4ff7-b92d-6b99bd6c91d3"
 ENV DOMAIN=""
-ENV REMARKS="us21"
+ENV REMARKS="v2raykcp"
 ENV LIMIT_CONN=100
 ENV RATE=30mbit
 ENV KCPSPEED=30
 ENV EXECFILE=/usr/sbin/httpv
 ENV MTU=1350
-ENV TTI=70
-ENV BufferSize=3
+ENV TTI=50
+ENV BufferSize=2
 
 
 RUN apk add -U iproute2 tzdata curl && ln -s /usr/lib/tc /lib/tc \
