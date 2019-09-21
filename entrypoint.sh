@@ -65,7 +65,7 @@ cat > /etc/config.json<< TEMPEOF
          "readBufferSize": $BufferSize,
          "uplinkCapacity": $KCPSPEED,
          "header": {
-           "type": "utp"
+           "type": $HEADERTYPE
          },
          "mtu": $MTU,
          "writeBufferSize": $BufferSize,
@@ -106,7 +106,7 @@ echo "额外ID (Alter Id) = 233"
 echo
 echo "传输协议 (Network) = kcp"
 echo
-echo "伪装类型 (header type) = utp"
+echo "伪装类型 (header type |none|srtp|utp|wechat-video|dtls|wireguard) = $HEADERTYPE"
 echo
 echo "传输速度 (speed) = $KCPSPEED"
 echo
@@ -127,7 +127,7 @@ cat >/tmp/vmess_qr.json <<-EOF
 			"id": "${ID}",
 			"aid": "233",
 			"net": "kcp",
-			"type": "utp",
+			"type": "${HEADERTYPE}",
 			"host": "",
 			"path": "",
 			"tls": ""
