@@ -16,9 +16,13 @@ ENV PORT 59028
 ENV ID="36cc0413-0620-4ff7-b92d-6b99bd6c91d3"
 ENV DOMAIN=""
 ENV REMARKS="us21"
-ENV LIMIT_CONN 500
-ENV RATE 500mbit
-ENV EXECFILE	/usr/sbin/httpv
+ENV LIMIT_CONN=500
+ENV RATE=30mbit
+ENV EXECFILE=/usr/sbin/httpv
+ENV MTU=1350
+ENV TTI=70
+ENV BufferSize=3
+
 
 RUN apk add -U iproute2 tzdata curl && ln -s /usr/lib/tc /lib/tc \
          && cp -r -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
