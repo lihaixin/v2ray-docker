@@ -23,6 +23,7 @@ ENV EXECFILE=/usr/sbin/httpv
 ENV MTU=1350
 ENV TTI=50
 ENV BufferSize=2
+ENV HEADERTYPE=none
 
 
 RUN apk add -U iproute2 tzdata curl && ln -s /usr/lib/tc /lib/tc \
