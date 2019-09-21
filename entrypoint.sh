@@ -108,7 +108,7 @@ echo "传输协议 (Network) = kcp"
 echo
 echo "伪装类型 (header type) = utp"
 echo
-echo "传输速度 (speed) = $KCPSEED"
+echo "传输速度 (speed) = $KCPSPEED"
 echo
 echo "最大传输单元 (mtu) = $MTU"
 echo
