@@ -62,13 +62,13 @@ cat > /etc/config.json<< TEMPEOF
      "streamSettings": {
        "network": "mkcp",
        "kcpSettings": {
-         "readBufferSize": 3,
+         "readBufferSize": $BufferSize,
          "uplinkCapacity": $RATE,
          "header": {
            "type": "utp"
          },
          "mtu": $MTU,
-         "writeBufferSize": 3,
+         "writeBufferSize": $BufferSize,
          "congestion": true,
          "downlinkCapacity": $RATE,
          "tti": $TTI
@@ -110,9 +110,11 @@ echo "伪装类型 (header type) = utp"
 echo
 echo "传输速度 (speed) = $RATE"
 echo
-echo "最大传输单元 (mtu) = $MTI
+echo "最大传输单元 (mtu) = $MTI"
 echo
-echo "传输时间间隔(tti) = $TTI
+echo "传输时间间隔(tti) = $TTI"
+echo 
+echo "是否启用拥塞控制(congestion) = true"
 echo "---------- END -------------"
 echo
 
