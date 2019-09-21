@@ -65,7 +65,7 @@ cat > /etc/config.json<< TEMPEOF
          "readBufferSize": $BufferSize,
          "uplinkCapacity": $KCPSPEED,
          "header": {
-           "type": $HEADERTYPE
+           "type": "$HEADERTYPE"
          },
          "mtu": $MTU,
          "writeBufferSize": $BufferSize,
