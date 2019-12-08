@@ -1,21 +1,21 @@
 # USE for client down
 FROM nginx:stable-alpine
 WORKDIR /usr/share/nginx/html/
-ENV CTIME     20180721
+ENV CTIME     20191208
 ENV HTTPDIR     /usr/share/nginx/html/
 
 #Down client file
 #windows
-ADD https://github.com/2dust/v2rayN/releases/download/2.38/v2rayN-Core.zip ${HTTPDIR}
+ADD https://github.com/2dust/v2rayN/releases/download/2.53/v2rayN-Core.zip ${HTTPDIR}
 
 #Mac ios
 ADD https://github.com/Cenmrev/V2RayX/releases/download/v1.5.1/V2RayX.app.zip ${HTTPDIR}
 #iPhone 
 ADD https://github.com/j-proxy/iossos/raw/ba20dd240e251d9bd589008e0b00ec514ed88d12/Shadowrocket-2.1.10-PP.ipa ${HTTPDIR}
 #android
-ADD https://github.com/2dust/v2rayNG/releases/download/1.1.1/app-arm64-v8a-release.apk ${HTTPDIR}
-ADD https://github.com/2dust/v2rayNG/releases/download/1.1.1/app-armeabi-v7a-release.apk ${HTTPDIR}
-ADD https://github.com/2dust/v2rayNG/releases/download/1.1.1/app-universal-release.apk ${HTTPDIR}
+ADD https://github.com/2dust/v2rayNG/releases/download/1.1.12/v2rayNG_1.1.12_arm64-v8a.apk ${HTTPDIR}
+ADD https://github.com/2dust/v2rayNG/releases/download/1.1.12/v2rayNG_1.1.12_armeabi-v7a.apk ${HTTPDIR}
+ADD https://github.com/2dust/v2rayNG/releases/download/1.1.12/v2rayNG_1.1.12.apk ${HTTPDIR}
 #chrome
 ADD https://github.com/FelisCatus/SwitchyOmega/releases/download/v2.5.20/SwitchyOmega_Chromium.crx ${HTTPDIR} 
 ADD https://github.com/FelisCatus/SwitchyOmega/releases/download/v2.5.20/proxy_switchyomega-2.5.20-an+fx.xpi ${HTTPDIR} 
