@@ -9,6 +9,8 @@ RUN /tmp/go.sh
 FROM alpine:latest
 
 LABEL maintainer "Darian Raymond <admin@v2ray.com>"
+LABEL VERSION v4.23.1
+LABEL CTIME 2020-3-15
 
 COPY --from=builder /usr/bin/v2ray/v2ray /usr/bin/v2ray/
 COPY --from=builder /usr/bin/v2ray/v2ctl /usr/bin/v2ray/
