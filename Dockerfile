@@ -21,7 +21,7 @@ ADD https://github.com/FelisCatus/SwitchyOmega/releases/download/v2.5.20/Switchy
 ADD https://github.com/FelisCatus/SwitchyOmega/releases/download/v2.5.20/proxy_switchyomega-2.5.20-an+fx.xpi ${HTTPDIR} 
 #doc
 ADD https://docs.google.com/document/export?format=html&id=1dbiYopOldjDig8rTNellMQwzqYQiSev_Z5pwyrnQMVk ${HTTPDIR}
-ADD ./index.html /usr/share/nginx/html/
-RUN mv export v2ray使用指南.pdf && chmod 644 ./*
+ADD ./v2ray使用指南.html /usr/share/nginx/html/
+RUN chmod 644 ./*
 
 CMD ["nginx", "-g", "daemon off;"]
